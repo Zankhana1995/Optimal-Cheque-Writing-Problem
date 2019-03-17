@@ -10,3 +10,14 @@ equal to A every time period).
 not require writing a cheque.
 For example:
 1. If N=3, A=100, B=0. The only way to pay is to write a cheque for 100 every time period
+
+We associate to writing each cheque a cost C[x] equal to the number of characters taken to write the amount x
+on the cheque. You are asked to write a program that finds a payment schedule that satisfies the constraints
+above and it is optimal:
+
+1. If N=2, A=100, B=0; the optimal schedule cost is 20: writing twice “one hundred”
+2. If N=2, A= 100, B=100; the optimal schedule cost is 10:(writing one cheque for “two hundred”). Note that
+a payment schedule of (200,0) is valid.
+3. If N=3, A=97, B=6; the optimal schedule is 28 for the schedule (99,96,96) corresponding to writing:
+“ninety nine” and twice “ninety six”. Another valid schedule might be (97,97,97) but its cost is higher at
+33.
