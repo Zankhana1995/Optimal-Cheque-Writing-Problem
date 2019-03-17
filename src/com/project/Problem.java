@@ -81,7 +81,7 @@ public class Problem {
 	public static void main(String[] args) throws IOException {
 
 		List<Integer> list = new ArrayList<>();
-		File file = new File("C:\\Users\\Zankhana Patel ZKP\\Desktop\\Workspace\\extra\\src\\extra\\cost.txt");
+		File file = new File("E:\\GithubRepo\\Optimal-Cheque-Writing-Problem\\cost.txt");
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String st;
 		Map<Integer, Integer> map = new HashMap<>();
