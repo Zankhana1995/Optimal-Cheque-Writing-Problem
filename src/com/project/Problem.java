@@ -43,9 +43,7 @@ public class Problem {
 
 	public static void printCombinations(List<Integer> list, int maxLength, Map<Integer, Integer> map) {
 		List<List<Integer>> combs = combinations(list, maxLength);
-		List<Integer> finalList = new ArrayList<>();
 		int cost = Integer.MAX_VALUE;
-		int finalSum = 0;
 		String finalLine = "";
 		for (List<Integer> lst : combs) {
 			Integer sum = 0;
@@ -60,22 +58,19 @@ public class Problem {
 				}
 				period++;
 			}
-			if (li.size() == r) {
+			if (li.size() == r && sum == amount * r) {
 				int costSum = 0;
 				for (Integer integer : li) {
 					costSum += map.get(integer);
 				}
 				if (costSum < cost) {
 					cost = costSum;
-					finalList = li;
-					finalSum = sum;
+				
 					finalLine = line;
 				}
 			}
 		}
-		if (finalSum == amount * r ) {
-			System.out.println(finalLine +" "+cost);
-		}
+		System.out.println(finalLine + " " + "cost :" + cost);
 	}
 
 	public static void main(String[] args) throws IOException {
@@ -89,7 +84,6 @@ public class Problem {
 			String[] values = st.split("\\s+");
 			map.put(Integer.parseInt(values[0]), Integer.parseInt(values[1]));
 		}
-		// System.out.println(map);
 		list.add(amount);
 		for (int i = 1; i <= balance; i++) {
 			list.add(amount + i);
@@ -97,7 +91,6 @@ public class Problem {
 		for (int i = 1; i <= balance; i++) {
 			list.add(amount - i);
 		}
-		// System.out.println(list);
 		printCombinations(list, r, map);
 		br.close();
 	}
