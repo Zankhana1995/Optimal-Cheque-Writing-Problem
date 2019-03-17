@@ -20,4 +20,5 @@ above and it is optimal:
 a payment schedule of (200,0) is valid.
 3. If N=3, A=97, B=6; the optimal schedule is 28 for the schedule (99,96,96) corresponding to writing:
 “ninety nine” and twice “ninety six”. Another valid schedule might be (97,97,97) but its cost is higher at
-33.
+
+I have implemented only main logic by taking hardcode value from file. Input file is for reference.
