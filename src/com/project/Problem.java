@@ -2,16 +2,18 @@ package com.project;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Problem {
 
 	public static int r = 3;
-	public static int amount = 5;
-	public static int balance = 1;
+	public static int amount = 97;
+	public static int balance = 6;
 
 	private static List<List<Integer>> combinations(List<Integer> list, int maxLength) {
 		return combinations(list, maxLength, new ArrayList(), new ArrayList());
@@ -39,9 +41,12 @@ public class Problem {
 		return res2;
 	}
 
-	public static void printCombinations(List<Integer> list, int maxLength) {
+	public static void printCombinations(List<Integer> list, int maxLength, Map<Integer, Integer> map) {
 		List<List<Integer>> combs = combinations(list, maxLength);
-
+		List<Integer> finalList = new ArrayList<>();
+		int cost = Integer.MAX_VALUE;
+		int finalSum = 0;
+		String finalLine = "";
 		for (List<Integer> lst : combs) {
 			Integer sum = 0;
 			String line = "";
@@ -55,9 +60,21 @@ public class Problem {
 				}
 				period++;
 			}
-			if (sum == amount * r && li.size() == r) {
-				System.out.println(line.trim());
+			if (li.size() == r) {
+				int costSum = 0;
+				for (Integer integer : li) {
+					costSum += map.get(integer);
+				}
+				if (costSum < cost) {
+					cost = costSum;
+					finalList = li;
+					finalSum = sum;
+					finalLine = line;
+				}
 			}
+		}
+		if (finalSum == amount * r ) {
+			System.out.println(finalLine +" "+cost);
 		}
 	}
 
@@ -67,13 +84,12 @@ public class Problem {
 		File file = new File("C:\\Users\\Zankhana Patel ZKP\\Desktop\\Workspace\\extra\\src\\extra\\cost.txt");
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String st;
-		Map<Integer,Integer> map = new HashMap<>();
-		while ((st = br.readLine()) != null)
-		{
+		Map<Integer, Integer> map = new HashMap<>();
+		while ((st = br.readLine()) != null) {
 			String[] values = st.split("\\s+");
-			map.put(Integer.parseInt(values[0]), Integer.parseInt(values[1]));		
+			map.put(Integer.parseInt(values[0]), Integer.parseInt(values[1]));
 		}
-		System.out.println(map);
+		// System.out.println(map);
 		list.add(amount);
 		for (int i = 1; i <= balance; i++) {
 			list.add(amount + i);
@@ -81,7 +97,8 @@ public class Problem {
 		for (int i = 1; i <= balance; i++) {
 			list.add(amount - i);
 		}
-		System.out.println(list);
-		printCombinations(list, r);
+		// System.out.println(list);
+		printCombinations(list, r, map);
+		br.close();
 	}
 }
