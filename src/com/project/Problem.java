@@ -64,8 +64,7 @@ public class Problem {
 					costSum += map.get(integer);
 				}
 				if (costSum < cost) {
-					cost = costSum;
-				
+					cost = costSum;			
 					finalLine = line;
 				}
 			}
