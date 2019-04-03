@@ -11,9 +11,9 @@ import java.util.Map;
 
 public class Problem {
 
-	public static int r = 3;
-	public static int amount = 97;
-	public static int balance = 6;
+	public static int r = 5;
+	public static int amount = 25;
+	public static int balance = 10;
 
 	private static List<List<Integer>> combinations(List<Integer> list, int maxLength) {
 		return combinations(list, maxLength, new ArrayList(), new ArrayList());
